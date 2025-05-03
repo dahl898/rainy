@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="D:\Programowanie\Web development 2.0\Test Projects\react-weather-app\src\Components\style.css">
+<title>Smooth Weather Curve</title>
+<style>
+  body {
+    background: #2c2255; /* Dark background like your image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .chart {
+    width: 300px;
+    height: 150px;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .line {
+    fill: none;
+    stroke: #f5a623;
+    stroke-width: 3;
+  }
+
+  .point {
+    fill: white;
+    stroke: #f5a623;
+    stroke-width: 2;
+  }
+</style>
+</head>
+<body>
+
+<div class="chart">
+  <svg viewBox="0 0 300 150">
+    <!-- Smooth curve -->
+    <path d="M 20 100 Q 80 20, 140 100 Q 200 180, 280 50" class="line" />
+    
+    <!-- Points -->
+    <circle cx="20" cy="100" r="5" class="point" />
+    <circle cx="140" cy="100" r="5" class="point" />
+    <circle cx="280" cy="50" r="5" class="point" />
+  </svg>
+</div>
+
+</body>
+</html>

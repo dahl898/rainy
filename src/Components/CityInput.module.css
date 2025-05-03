@@ -1,0 +1,21 @@
+.city_ipt {
+  display: block;
+  padding: .6rem;
+  border: 2px solid #522546;
+  margin: auto;
+}
+
+.city_ipt:focus-visible {
+  outline: 2px solid #88304E
+}
+
+.city_lbl {
+  display: block;
+  padding: .8rem;
+  font-size: 1.2rem;
+}
+
+.city_btn {
+  margin: .8rem;
+  padding: .6rem;
+}

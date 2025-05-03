@@ -1,0 +1,81 @@
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-straight/css/uicons-thin-straight.css');
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-straight/css/uicons-thin-straight.css');
+.card {
+  box-sizing: border-box;
+  padding: 1rem;
+  width: 350px;
+  border-radius: 9px;
+  font-size: .5rem;
+  position: relative;
+  background: linear-gradient(to left top, #11004c, #0A2647 60%);
+  /* margin: 3rem; */
+  color: white;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  
+  /* color: white; */
+}
+
+.type {
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin: 0 0 .3rem 0;
+}
+
+.precipitation_level {
+  display: inline-block;
+  margin: 0;
+  margin-left: 1rem;
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
+.precipitation_container {
+  display: flex;
+  align-items: center;
+}
+
+.raindrops_icon {
+
+  color: white;
+  width: 50px;
+  height: 50px;
+}
+
+.precipitation_icon_container {
+  border-radius: 9px;
+  padding: .5rem;
+  /* background: linear-gradient(to top, rgb(15, 48, 192), rgba(48, 51, 73, 0.5) 50%); */
+}
+
+.data_container {
+  width: 134px;
+  display: inline-block;
+  font-size: .8rem;
+  margin-right: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.precipitation_general_data_container {
+  margin-top: 1rem;
+}
+
+.span {
+  display: block;
+  font-size: .9rem;
+}
+
+.data_icon {
+  padding: .4rem;
+  border-radius: 9px;
+  background-color: rgba(48, 51, 73, 0.5) 50%;
+  margin-right: .6rem;
+  float: left;
+  width: 30px;
+  height: 30px;
+  color: white;
+}

@@ -1,0 +1,24 @@
+.weather_screen_container {
+  border: 2px solid white;
+  width: 100%;
+  height: 50%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.weather_cards_container {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  border: 2px solid white;
+  width: 100%;
+  height: 50%;
+  padding: 0;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.main_container {
+  width: var(--viewport-width);
+  height: var(--viewport-height);
+}

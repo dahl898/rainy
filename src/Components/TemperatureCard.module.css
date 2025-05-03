@@ -1,0 +1,59 @@
+.card {
+  box-sizing: border-box;
+  padding: 1rem;
+  height: 271px;
+  width: 350px;
+  border-radius: 9px;
+  font-size: .5rem;
+  position: relative;
+  background: linear-gradient(to left top, #3d2443, #49284b 60%);
+  color: white;
+}
+
+.type {
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin: 0 0 .3rem 0;
+}
+
+.chart {
+  width: 100%;
+
+}
+
+.precipitation_general_data_container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.span {
+  display: block;
+  font-size: .9rem;
+}
+
+.data_icon {
+  padding: .4rem;
+  /* border-radius: 9px; */
+  background-color: rgba(48, 51, 73, 0.5) 50%;
+  margin-right: .6rem;
+  float: left;
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+
+.data_container {
+  width: 134px;
+  display: flex;
+  font-size: .8rem;
+  margin-right: 1.2rem;
+  margin-bottom: 1.2rem;
+  justify-content: center;
+}
+
+.text_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
