@@ -4,6 +4,7 @@ import style from './CityInput.module.css'
 export default function CityInput({ onCitySubmit }) {
   const [city, setCity] = useState('')
   
+  
   return (
     <div>
       <label htmlFor="city" className={style.city_lbl}>Wanna know the wheather?😏</label>

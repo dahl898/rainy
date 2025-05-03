@@ -1,13 +1,9 @@
-import { useEffect, useState, useRef } from 'react'
-import reactLogo from '../assets/react.svg'
-import viteLogo from '/vite.svg'
-// import '../styles/App.css'
+import { useEffect, useState } from 'react'
 import CityInput from './CityInput'
 import WeatherCard from './WeatherCard'
 import style from './App.module.css'
 import useViewportCssVars from './useViewportCssVars'
 import TemperatureCard from './TemperatureCard'
-import SmoothLineChart from './SmoothLineChart'
 
 function App() {
   const [citySearch, setCitySearch] = useState('')
@@ -36,33 +32,6 @@ function App() {
     }
 
     getWeather(citySearch)
-    
-    // async function getGeocoding(city) {
-    //   try {
-    //     const res = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=d8fca71998191b3817b2b1721bdbc53b`)
-    //     const data = await res.json()
-    //     console.log('Geocoding: ' + data[0].lat)
-    //     return {
-    //       lat: data[0].lat,
-    //       lon: data[0].lon
-    //     }
-    //   }catch(err) {
-    //     console.error(err)
-    //   }
-    // }
-
-    // async function getWeather(city) {
-    //   try{
-    //     const { lat, lon } = await getGeocoding(city)
-    //     const res = await fetch(`https://api.open-meteo.com/v1/forecast&latitude=51,5073219&longitude=-0,1276474`)
-    //     const data = await res.json()
-    //     console.log(data)
-    //   }catch(err){
-    //     console.error(err)
-    //   }
-    // }
-
-    // getWeather(citySearch)
   }, [citySearch])
 
   if (status === 'loading') return <p>Loading...</p>
