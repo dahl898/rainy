@@ -2,9 +2,15 @@ import React from "react";
 import style from './SmoothLineChart.module.css'
 import dayPNG from '../img/day.png'
 
-const periods = ['morning', 'day', 'evening', 'night']
-
-const SmoothLineChart = ({ width, height, chartCoordinates = [], points = [], smoothing = 0.2, temperatures }) => {
+const SmoothLineChart = ({ 
+  width, 
+  height, 
+  chartCoordinates = [], 
+  points = [], 
+  smoothing = 0.2, 
+  temperatures,
+  periods 
+}) => {
   if (chartCoordinates.length < 2) return null;
 
   const controlPoint = (current, previous, next, reverse = false) => {

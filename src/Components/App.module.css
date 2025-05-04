@@ -20,5 +20,5 @@
 
 .main_container {
   width: var(--viewport-width);
-  height: var(--viewport-height);
+  height: calc(var(--viewport-height) * 2);
 }

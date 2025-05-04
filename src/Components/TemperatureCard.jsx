@@ -5,27 +5,27 @@ import DewPointSVG from "./DewPointSVG";
 import FeelsSVG from "./FeelsSVG";
 import UVSVG from "./UVSVG"
 import PressureSVG from "./PressureSVG";
+import {useResizeObserver} from "./Hooks/useResizeObserver";
 
 export default function TemperatureCard() {
   const chartRef = useRef(null)
   const [dimensions, setDimensions] = useState({width: 200, height: 130})
-  const height = 130
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (chartRef.current) {
-        let { width, height } = chartRef.current.getBoundingClientRect()
-        height = height * 0.5
-        setDimensions({ width, height })
-    }}
+  useResizeObserver(setDimensions, chartRef)
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (chartRef.current) {
+  //       const { width, height } = chartRef.current.getBoundingClientRect()
+  //       setDimensions({ width, height })
+  //   }}
 
-    handleResize() // initial call
+  //   handleResize() // initial call
 
-    window.addEventListener('resize', handleResize)
+  //   window.addEventListener('resize', handleResize)
 
-    return () => window.removeEventListener('resize', handleResize)
+  //   return () => window.removeEventListener('resize', handleResize)
 
-  }, [])
+  // }, [])
 
   // const points = [
   //   { x: 5, y: 80 },
@@ -52,8 +52,9 @@ export default function TemperatureCard() {
     return acc
   }, 0)
 
-  const padding = {top: 30, bottom: 60, left: 30, right: 30}
-  const usableHeight = dimensions.height - padding.bottom
+  const padding = {top: 30, bottom: 55, left: 30, right: 30}
+  const chartHeight = dimensions.height * 0.5
+  const usableHeight = chartHeight - padding.bottom
   const usableWidth = dimensions.width - padding.left - padding.right
 
   function generatePoints(data, dataMin, dataMax, width, height, padding) {
@@ -70,7 +71,9 @@ export default function TemperatureCard() {
 
   const points = generatePoints(temperatures, temperatureMin, temperatureMax, usableWidth, usableHeight, padding)
 
-  const chartCoordinates = [{x: 0, y: dimensions.height - 25}, ...points, {x: dimensions.width, y: dimensions.height - 25 }]
+  const chartCoordinates = [{x: 0, y: chartHeight - 25}, ...points, {x: dimensions.width, y: chartHeight - 25 }]
+
+  const svgHeightFactor = 0.4088
 
   return(
     <div className={style.card}>
@@ -80,8 +83,9 @@ export default function TemperatureCard() {
         chartCoordinates={chartCoordinates}
         points={points} 
         width={dimensions.width} 
-        height={height} 
+        height={dimensions.width * svgHeightFactor} 
         temperatures={temperatures}
+        periods={['morning', 'day', 'evening', 'night']}
         />
         <div className={style.precipitation_general_data_container}>
           <div className={`${style.data_container} ${style.three}`}>

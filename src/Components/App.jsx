@@ -4,6 +4,8 @@ import WeatherCard from './WeatherCard'
 import style from './App.module.css'
 import useViewportCssVars from './useViewportCssVars'
 import TemperatureCard from './TemperatureCard'
+import WindCard from './PrecipitationLevelCard'
+import Scroll from './Scroll'
 
 function App() {
   const [citySearch, setCitySearch] = useState('')
@@ -44,8 +46,7 @@ function App() {
         {/* <WeatherScreen/> todo */}
       </div>
       <div className={style.weather_cards_container}>
-        <WeatherCard temperature={23}/>
-        <TemperatureCard/>
+        <Scroll />
       </div>
     </div>
   
