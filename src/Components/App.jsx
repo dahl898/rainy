@@ -6,55 +6,53 @@ import useViewportCssVars from './useViewportCssVars'
 import TemperatureCard from './TemperatureCard'
 import WindCard from './PrecipitationLevelCard'
 import Scroll from './Scroll'
+import Example from './Example'
 
 function App() {
-  const [citySearch, setCitySearch] = useState('')
-  const [weatherData, setWeatherData] = useState(null)
-  const [status, setStatus] = useState('initial')
-  
+    const [citySearch, setCitySearch] = useState('')
+    const [weatherData, setWeatherData] = useState(null)
+    const [status, setStatus] = useState('initial')
 
-  useViewportCssVars()
-  useEffect(() => {
-    if (citySearch === '' ) return
-    
-    async function getWeather(city) {
-      setStatus('loading');
-      try {
-        const res = await fetch(`http://localhost:3000/weather/${city}`)
-        const data = await res.json()
-        console.log(data)
-        setWeatherData(data)
-      }catch(err) {
-        setStatus('error')
-        console.error(err)
-      }finally {
-        setStatus('success')
-      }
-      
-    }
+    useViewportCssVars()
+    useEffect(() => {
+        if (citySearch === '') return
 
-    getWeather(citySearch)
-  }, [citySearch])
+        async function getWeather(city) {
+            setStatus('loading')
+            try {
+                const res = await fetch(`http://localhost:3000/weather/${city}`)
+                const data = await res.json()
+                console.log(data)
+                setWeatherData(data)
+            } catch (err) {
+                setStatus('error')
+                console.error(err)
+            } finally {
+                setStatus('success')
+            }
+        }
 
-  if (status === 'loading') return <p>Loading...</p>
-  if (citySearch === '') return (<CityInput
-        onCitySubmit={(city) => setCitySearch(city)}
-      />)
-  if (status === 'success' && weatherData) return (
-    <div className={style.main_container}>
-      <div className={style.weather_screen_container}>
-        {/* <WeatherScreen/> todo */}
-      </div>
-      <div className={style.weather_cards_container}>
-        <Scroll />
-      </div>
-    </div>
-  
-)
-  if (status === 'error') return (<h1>Ups, something went wrong...</h1>)
+        getWeather(citySearch)
+    }, [citySearch])
 
+    if (status === 'loading') return <p>Loading...</p>
+    if (citySearch === '')
+        return <CityInput onCitySubmit={(city) => setCitySearch(city)} />
+    if (status === 'success' && weatherData)
+        return (
+            <div className={style.main_container}>
+                <div className={style.weather_cards_container}>
+                    <Scroll />
+                    <Example />
+                </div>
+                <div className={style.weather_screen_container}>
+                    {/* <WeatherScreen/> todo */}
+                </div>
+            </div>
+        )
+    if (status === 'error') return <h1>Ups, something went wrong...</h1>
 
-  return null 
+    return null
 }
 
 export default App

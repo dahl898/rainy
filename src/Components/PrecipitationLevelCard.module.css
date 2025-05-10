@@ -6,7 +6,9 @@
   border-radius: 20px;
   font-size: .5rem;
   position: relative;
-  background: linear-gradient(to left top, #312a48, #342a4d 60%);
+  background-color: #16236c;
+  background-color: #4b7eff;
+  /* background: linear-gradient(to left top, #312a48, #342a4d 60%); */
   color: white;
 }
 
