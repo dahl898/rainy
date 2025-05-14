@@ -1,11 +1,4 @@
-import {
-  AreaChart,
-  Area,
-  ResponsiveContainer,
-  XAxis,
-  Line,
-  ComposedChart,
-} from 'recharts'
+import { Area, ResponsiveContainer, XAxis, Line, ComposedChart } from 'recharts'
 import { denormalizeValue, normalizeData } from './Utils/functions'
 import SunIconSVG from './SunIconSVG'
 
@@ -18,6 +11,7 @@ const WeatherLineChart = ({ data }) => {
       name: xAxis[idx],
     }
   })
+
   function renderCustomXAxisTick({ x, y, payload }) {
     return (
       <text x={x} y={y + 40} fontSize={12} textAnchor="middle" fill="white">
@@ -59,7 +53,10 @@ const WeatherLineChart = ({ data }) => {
     )
   }
   return (
-    <>
+    <div style={{ width: '100%', height: '100%' }}>
+      {/* keyframes have checkpoints at 0% and 50% with the same parameters only to control the order of animations. The point is 
+    for all animations to start at the same time, right at the beginning and the cascade. For example, line animation
+    doesn't have 50% checkpoint, so it goes normally, but the area has, so if we set durations accordingly, line to go for 1s and area to go for 2s, we approximately get that line will finish animation and area will state animation, because area checkpoint at 50% should be reached approximately after 1s */}
       <style>
         {`@keyFrames drawLine{
             0% {
@@ -113,7 +110,7 @@ const WeatherLineChart = ({ data }) => {
         
         `}
       </style>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer>
         <ComposedChart
           data={lineChartData}
           margin={{ top: 35, right: 35, left: 35, bottom: 40 }}
@@ -135,34 +132,24 @@ const WeatherLineChart = ({ data }) => {
             axisLine={false}
             tickLine={false}
           />
-          {/* <Area
-            type="monotone"
-            dataKey="empirical"
-            stroke="url(#chartLineGradient)"
-            fillOpacity={1}
-            fill="url(#chartFillGradient)"
-            dot={{ stroke: 'white', fill: 'white' }}
-            strokeWidth={2}
-            label={renderCustomAreaLabel}
-            isAnimationActive={false}
-          /> */}
           <Area
             className="animate-area-fill"
             type="monotone"
             dataKey="empirical"
             stroke="none"
-            fillOpacity={0}
+            fillOpacity={1}
             fill="url(#chartFillGradient)"
             dot={false}
             label={renderCustomAreaLabel}
             isAnimationActive={false}
           />
           <Line
+            className="animate-line draw-me"
             type="monotone"
             dataKey="empirical"
             stroke="url(#chartLineGradient)"
             strokeWidth={2}
-            fillOpacity={0}
+            fillOpacity={1}
             dot={{
               stroke: 'white',
               fill: 'white',
@@ -173,15 +160,9 @@ const WeatherLineChart = ({ data }) => {
             }}
             isAnimationActive={false}
           />
-          {/* <Line
-                    type="monotone"
-                    dataKey="empirical"
-                    stroke="#8884d8"
-                    strokeWidth={2}
-                /> */}
         </ComposedChart>
       </ResponsiveContainer>
-    </>
+    </div>
   )
 }
 
