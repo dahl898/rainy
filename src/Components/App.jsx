@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import CityInput from './CityInput'
-import WeatherCard from './WeatherCard'
+import WeatherCard from './PrecipitationCard'
 import style from './App.module.css'
 import useViewportCssVars from './useViewportCssVars'
 import WindCard from './PrecipitationLevelCard'

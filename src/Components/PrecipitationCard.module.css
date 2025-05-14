@@ -5,9 +5,9 @@
   padding: 1rem;
   width: 350px;
   border-radius: 20px;
-  font-size: .5rem;
+  font-size: 0.5rem;
   position: relative;
-  background: linear-gradient(to left top, #11004c, #0A2647 60%);
+  background: linear-gradient(to left top, #11004c, #0a2647 60%);
   /* margin: 3rem; */
   color: white;
 }
@@ -16,14 +16,14 @@
   width: 50px;
   height: 50px;
   position: relative;
-  
+
   /* color: white; */
 }
 
 .type {
   font-size: 1rem;
   text-transform: uppercase;
-  margin: 0 0 .3rem 0;
+  margin: 0 0 0.3rem 0;
 }
 
 .precipitation_level {
@@ -40,7 +40,6 @@
 }
 
 .raindrops_icon {
-
   color: white;
   width: 50px;
   height: 50px;
@@ -48,14 +47,14 @@
 
 .precipitation_icon_container {
   border-radius: 9px;
-  padding: .5rem;
+  padding: 0.5rem;
   /* background: linear-gradient(to top, rgb(15, 48, 192), rgba(48, 51, 73, 0.5) 50%); */
 }
 
 .data_container {
   width: 134px;
   display: inline-block;
-  font-size: .8rem;
+  font-size: 0.8rem;
   margin-right: 1.2rem;
   margin-bottom: 1.2rem;
 }
@@ -66,14 +65,14 @@
 
 .span {
   display: block;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .data_icon {
-  padding: .4rem;
+  padding: 0.4rem;
   border-radius: 9px;
   background-color: rgba(48, 51, 73, 0.5) 50%;
-  margin-right: .6rem;
+  margin-right: 0.6rem;
   float: left;
   width: 30px;
   height: 30px;

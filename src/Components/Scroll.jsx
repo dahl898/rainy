@@ -1,10 +1,10 @@
-import WeatherCard from './WeatherCard'
+import PrecipitationCard from './PrecipitationCard'
 import TemperatureCard from './TemperatureCard'
 
 export default function Scroll() {
   return (
     <>
-      <WeatherCard temperature={23} />
+      <PrecipitationCard temperature={23} />
       <TemperatureCard />
       {/* <PrecipitationLevelCard /> */}
     </>
