@@ -1,6 +1,6 @@
 import { Area, ResponsiveContainer, XAxis, Line, ComposedChart } from 'recharts'
 import { denormalizeValue, normalizeData } from './Utils/functions'
-import SunIconSVG from './SunIconSVG'
+import SunIconSVG from '../SVG/SunIconSVG'
 
 const WeatherLineChart = ({ data }) => {
   const xAxis = ['morning', 'day', 'evening', 'night']
@@ -144,7 +144,7 @@ const WeatherLineChart = ({ data }) => {
             isAnimationActive={false}
           />
           <Line
-            className="animate-line draw-me"
+            className="animate-line"
             type="monotone"
             dataKey="empirical"
             stroke="url(#chartLineGradient)"

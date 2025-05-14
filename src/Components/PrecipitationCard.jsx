@@ -1,9 +1,9 @@
 import style from './PrecipitationCard.module.css'
-import HumiditySVG from './HumiditySVG'
-import UmbrellaSVG from './UmbrellaSVG'
-import PrecipitationSVG from './PrecipitationSVG'
-import DewPointSVG from './DewPointSVG'
-import FeelsSVG from './FeelsSVG'
+import HumiditySVG from '../SVG/HumiditySVG'
+import UmbrellaSVG from '../SVG/UmbrellaSVG'
+import PrecipitationSVG from '../SVG/PrecipitationSVG'
+import DewPointSVG from '../SVG/DewPointSVG'
+import FeelsSVG from '../SVG/FeelsSVG'
 
 export default function PrecipitationCard({ temperature }) {
   return (
