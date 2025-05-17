@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react'
 import CityInput from './CityInput'
-import WeatherCard from './PrecipitationCard'
 import style from './App.module.css'
-import useViewportCssVars from './useViewportCssVars'
-import WindCard from './PrecipitationLevelCard'
+import useViewportCssVars from './Hooks/useViewportCssVars'
 import Scroll from './Scroll'
 
 function App() {

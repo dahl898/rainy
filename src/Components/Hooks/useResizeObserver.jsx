@@ -1,7 +1,6 @@
-import { useEffect } from "react";
+import { useEffect } from 'react'
 
-export function useResizeObserver(setDimensions, ref) {
-  
+export default function useResizeObserver(setDimensions, ref) {
   useEffect(() => {
     function handleResize() {
       if (ref.current) {
@@ -9,12 +8,11 @@ export function useResizeObserver(setDimensions, ref) {
         setDimensions({ width, height })
       }
     }
-    
+
     handleResize() //initial call
 
     window.addEventListener('resize', handleResize)
 
     return () => window.removeEventListener('resize', handleResize)
-
-  }, []) 
+  }, [])
 }

@@ -52,6 +52,9 @@ const WeatherLineChart = ({ data }) => {
       </g>
     )
   }
+
+  const newDate = new Date(Date.now())
+  console.log(newDate)
   return (
     <div style={{ width: '100%', height: '100%' }}>
       {/* keyframes have checkpoints at 0% and 50% with the same parameters only to control the order of animations. The point is 

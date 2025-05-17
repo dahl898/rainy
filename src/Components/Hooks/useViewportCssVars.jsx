@@ -1,13 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect } from 'react'
 
 export default function useViewportCssVars() {
   useEffect(() => {
     function setViewportVars() {
       const width = window.innerWidth
       const height = window.innerHeight
-      document.documentElement.style.setProperty('--viewport-height', `${height}px`)
-      document.documentElement.style.setProperty('--viewport-width', `${width}px`)
-      
+      document.documentElement.style.setProperty(
+        '--viewport-height',
+        `${height}px`
+      )
+      document.documentElement.style.setProperty(
+        '--viewport-width',
+        `${width}px`
+      )
     }
 
     setViewportVars()
