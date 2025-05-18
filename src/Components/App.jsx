@@ -18,8 +18,8 @@ function App() {
       try {
         const res = await fetch(`http://localhost:3000/weather/${city}`)
         const data = await res.json()
-        console.log(data)
-        setWeatherData(data)
+        console.log(data.data)
+        setWeatherData(data.finalArrayForFrontend)
       } catch (err) {
         setStatus('error')
         console.error(err)
@@ -38,7 +38,9 @@ function App() {
     return (
       <div className={style.main_container}>
         <div className={style.weather_cards_container}>
-          <Scroll />
+          {weatherData.map((forecastData) => {
+            return <Scroll forecastData={forecastData} />
+          })}
         </div>
         <div className={style.weather_screen_container}>
           {/* <WeatherScreen/> todo */}

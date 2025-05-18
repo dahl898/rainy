@@ -1,8 +1,8 @@
 import WeatherLineChart from './WeatherLineChart'
 import style from './TemperatureCard.module.css'
 
-export default function TemperatureCard() {
-  const apiData = [2, 4, 10, 4]
+export default function TemperatureCard({ forecastData }) {
+  const apiData = forecastData.map((val) => val.values.temperature)
 
   return (
     <div className={style.card}>

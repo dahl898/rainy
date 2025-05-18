@@ -2,7 +2,12 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import queryString from 'query-string'
-import { createForecastDateTimeList, filterApiData } from './Utils/functions.js'
+import {
+  createForecastDateTimeList,
+  filterApiData,
+  composeFinalArrayForFrontend,
+  prepareDailyData,
+} from './Utils/functions.js'
 
 dotenv.config()
 const app = express()
@@ -47,7 +52,7 @@ app.get('/weather/:city', async (req, res) => {
       { arrayFormat: 'comma' }
     )
 
-    const weatherTimestemps = [0, 6, 12, 18]
+    const weatherTimestemps = [6, 12, 18, 0]
     const timestamps = createForecastDateTimeList(weatherTimestemps)
     const response = await fetch(
       'https://api.tomorrow.io/v4/timelines?' + parametersURL,
@@ -58,8 +63,17 @@ app.get('/weather/:city', async (req, res) => {
       data.data.timelines[1].intervals,
       timestamps
     )
-    console.log(filteredData)
-    res.json(data)
+    const dailyData = prepareDailyData(
+      data.data.timelines[0].intervals,
+      timestamps
+    )
+    const finalArrayForFrontend = composeFinalArrayForFrontend(
+      filteredData,
+      dailyData,
+      timestamps
+    )
+
+    res.json({ finalArrayForFrontend, data })
   } catch (err) {
     console.error(err)
     res.status(500).json({ error: 'Failed to fetch weather data' })
