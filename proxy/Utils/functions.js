@@ -50,7 +50,7 @@ function prepareDailyData(dailyDataArray, timestamps) {
 }
 
 function composeFinalArrayForFrontend(
-  filteredApiDataArray,
+  filteredApiHourlyDataArray,
   filteredDailyDataArray,
   timestamps
 ) {
@@ -58,7 +58,7 @@ function composeFinalArrayForFrontend(
     //timestamp here represents an array of four strings ['2025-05-19T06:00:00Z','2025-05-19T12:00:00Z','2025-05-19T18:00:00Z''2025-05-19T00:00:00Z']. We only need to fetch the date from it, this is why I'm using [timestamp] (returns first element of an array), I'm just grabbing a first element of this array, because I know that the whole array is for one date but different time. So timestamp now equals '2025-05-19T06:00:00Z' in this case
     let currentDate = timestamp.split('T')[0]
     //innerArray is an array of API intervals objects with the same date: [{starttime: 28-05-2025T..., values: ...}, {starttime: 28-05-2025T..., values: ...}, {starttime: 28-05-2025T..., values: ...}]
-    const innerArray = filteredApiDataArray.filter((APIDataElement) => {
+    const innerArray = filteredApiHourlyDataArray.filter((APIDataElement) => {
       return APIDataElement.startTime.split('T')[0] === currentDate
     })
     innerArray.push(innerArray.shift()) //This is needed because on the frontend I would just map through to render the data, and it is essential that 6:00AM object goes first and 12:00PM object goes last.

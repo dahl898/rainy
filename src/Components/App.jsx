@@ -38,8 +38,8 @@ function App() {
     return (
       <div className={style.main_container}>
         <div className={style.weather_cards_container}>
-          {weatherData.map((forecastData) => {
-            return <Scroll forecastData={forecastData} />
+          {weatherData.map((forecastObject) => {
+            return <Scroll forecastObject={forecastObject} />
           })}
         </div>
         <div className={style.weather_screen_container}>

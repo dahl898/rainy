@@ -2,11 +2,11 @@ import PrecipitationCard from './PrecipitationCard'
 import TemperatureCard from './TemperatureCard'
 import PrecipitationLevelCard from './PrecipitationLevelCard'
 
-export default function Scroll({ forecastData }) {
+export default function Scroll({ forecastObject }) {
   return (
     <>
       <PrecipitationCard temperature={23} />
-      <TemperatureCard forecastData={forecastData} />
+      <TemperatureCard forecastObject={forecastObject} />
       <PrecipitationLevelCard />
     </>
   )

@@ -59,7 +59,7 @@ app.get('/weather/:city', async (req, res) => {
       options
     )
     const data = await response.json()
-    const filteredData = filterApiData(
+    const filteredHourlyData = filterApiData(
       data.data.timelines[1].intervals,
       timestamps
     )
@@ -68,7 +68,7 @@ app.get('/weather/:city', async (req, res) => {
       timestamps
     )
     const finalArrayForFrontend = composeFinalArrayForFrontend(
-      filteredData,
+      filteredHourlyData,
       dailyData,
       timestamps
     )
