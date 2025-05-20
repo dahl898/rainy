@@ -3,13 +3,14 @@
 .card {
   box-sizing: border-box;
   padding: 1rem;
-  width: 350px;
+  /* width: 350px; */
   border-radius: 20px;
   font-size: 0.5rem;
   position: relative;
   background: linear-gradient(to left top, #11004c, #0a2647 60%);
   /* margin: 3rem; */
   color: white;
+  margin-bottom: 0.75rem;
 }
 
 .icon {
@@ -34,9 +35,15 @@
   font-weight: 400;
 }
 
+.precipitation_headline_container {
+  display: flex;
+  align-items: center;
+}
+
 .precipitation_container {
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 .raindrops_icon {
@@ -53,12 +60,16 @@
 
 .data_container {
   width: 134px;
-  display: inline-block;
+  display: flex;
   font-size: 0.8rem;
   margin-right: 1.2rem;
   margin-bottom: 1.2rem;
 }
 
+.span_container {
+  display: flex;
+  flex-flow: column wrap;
+}
 .precipitation_general_data_container {
   margin-top: 1rem;
 }
