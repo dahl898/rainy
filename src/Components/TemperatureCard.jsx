@@ -1,14 +1,16 @@
 import WeatherLineChart from './WeatherLineChart'
 import style from './TemperatureCard.module.css'
 
-export default function TemperatureCard({ forecastObject }) {
-  const apiData = forecastObject.hourly.map((val) => val.values.temperature)
+export default function TemperatureCard({ forecastObject, width, height }) {
+  const chartCoordinates = forecastObject.hourly.map(
+    (val) => val.values.temperature
+  )
 
   return (
-    <div className={style.card}>
+    <div className={style.card} style={{ width: width, height: height }}>
       <p className={style.type}>Temperature</p>
       <div className={style.chart}>
-        <WeatherLineChart data={apiData} />
+        <WeatherLineChart data={chartCoordinates} />
       </div>
     </div>
   )

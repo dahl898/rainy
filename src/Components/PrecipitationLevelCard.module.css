@@ -3,13 +3,15 @@
   box-sizing: border-box;
   flex-direction: column;
   padding: 1rem;
-  height: 230px;
-  width: 350px;
+  /* height: 230px; */
+  /* width: 350px; */
   border-radius: 20px;
   font-size: 0.5rem;
   position: relative;
-  background: linear-gradient(to top, #323844, #013a94);
+  background-color: #4a5899;
+  /* background: linear-gradient(to top, #323844, #013a94); */
   color: white;
+  margin-bottom: 0.75rem;
 }
 
 .type {

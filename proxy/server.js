@@ -40,6 +40,12 @@ app.get('/weather/:city', async (req, res) => {
       'cloudBase',
       'cloudCeiling',
       'weatherCode',
+      'pressureSurfaceLevel',
+      'precipitationProbability',
+      'precipitationType',
+      'rainIntensity',
+      'snowIntensity',
+      'freezingRainIntensity',
     ]
 
     const parametersURL = queryString.stringify(
