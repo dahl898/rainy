@@ -31,4 +31,46 @@ function denormalizeValue(valueNormalized, data) {
   return valueDenormalized
 }
 
-export { generatePoints, normalizeData, denormalizeValue }
+function calculateAngles(containerRef, cardRefs) {
+  const angleList = cardRefs.map((cardRef) => {
+    const cardRect = cardRef.current.getBoundingClientRect()
+    const containerRect = containerRef.current.getBoundingClientRect()
+    const containerCenter = containerRect.top + containerRect.height / 2
+    const cardCenter = cardRect.top + cardRect.height / 2
+
+    const maxOffset = containerRect.height / 2
+    const offset = cardCenter - containerCenter
+
+    //This should ensure that angle doesn't spill outside [-15, 15] range
+    const angle = Math.min(30, Math.max(-30, (offset / maxOffset) * -30))
+
+    return angle
+  })
+  return angleList
+}
+
+function getCardToScrollTo(cardRefs, containerRef) {
+  const containerDimensions = containerRef.getBoundingClientRect()
+  const [topLastVisibleCard, bottomLastVisibleCard] = cardRefs.map((card) => {
+    const cardDimensions = card.getBoundingClientRect()
+    if (
+      cardDimensions.top < containerDimensions.top &&
+      cardDimensions.bottom > cardDimensions.top
+    )
+      return { ref: card, dimensions: cardDimensions }
+    if (
+      cardDimensions.top < containerDimensions.bottom &&
+      cardDimensions.bottom > cardDimensions.bottom
+    )
+      return { ref: card, dimensions: cardDimensions }
+  })
+
+  const topCardOffset = containerDimensions.top - topLastVisibleCard.top
+  const bottomCardOffset =
+    bottomLastVisibleCard.bottom - containerDimensions.top
+
+  if (topCardOffset > bottomCardOffset) return bottomLastVisibleCard.ref
+  if (topCardOffset < bottomCardOffset) return topLastVisibleCard.ref
+}
+
+export { generatePoints, normalizeData, denormalizeValue, calculateAngles }

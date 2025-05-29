@@ -7,10 +7,12 @@
   border-radius: 20px;
   font-size: 0.5rem;
   position: relative;
-  background: linear-gradient(to left top, #11004c, #0a2647 60%);
+  background-color: aquamarine;
+  /* background: linear-gradient(to left top, #11004c, #0a2647 60%); */
   /* margin: 3rem; */
   color: white;
   margin-bottom: 0.75rem;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .icon {
