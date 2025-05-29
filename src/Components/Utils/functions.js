@@ -52,6 +52,7 @@ function calculateAngles(containerRef, cardRefs) {
 function getCardToScrollTo(cardRefs, containerRef) {
   const containerDimensions = containerRef.getBoundingClientRect()
   const [topLastVisibleCard, bottomLastVisibleCard] = cardRefs.map((card) => {
+    // return first and last partly visible cards if there are any. Destructuring is based on the fact that top partly visible card will always go first because cardRefs should go in the same order as on screen.
     const cardDimensions = card.getBoundingClientRect()
     if (
       cardDimensions.top < containerDimensions.top &&
@@ -69,7 +70,7 @@ function getCardToScrollTo(cardRefs, containerRef) {
   const bottomCardOffset =
     bottomLastVisibleCard.bottom - containerDimensions.top
 
-  if (topCardOffset > bottomCardOffset) return bottomLastVisibleCard.ref
+  if (topCardOffset > bottomCardOffset) return bottomLastVisibleCard.ref // bigger offset equals bigger chunk of card is outside of the visible area. We need to scroll to the partly visible card that has smaller chunk outside the visible area, i.e. bigger visible chunk
   if (topCardOffset < bottomCardOffset) return topLastVisibleCard.ref
 }
 
