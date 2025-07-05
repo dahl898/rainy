@@ -45,7 +45,7 @@ const WeatherLineChart = ({ data }) => {
           fill="white"
           fontSize={12}
         >
-          {valueDenormalized}°
+          {valueDenormalized}
         </text>
 
         <Icon x={x} y={y} iconSize={iconSize} iconOffset={iconOffset} />
@@ -54,14 +54,26 @@ const WeatherLineChart = ({ data }) => {
   }
 
   const newDate = new Date(Date.now())
-  console.log(newDate)
+
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <div
+      className="chartWrapper"
+      style={{
+        width: '100%',
+        height: '100%',
+        transform: 'scale(0.5)',
+        willChange: 'transform',
+      }}
+    >
       {/* keyframes have checkpoints at 0% and 50% with the same parameters only to control the order of animations. The point is 
     for all animations to start at the same time, right at the beginning and the cascade. For example, line animation
     doesn't have 50% checkpoint, so it goes normally, but the area has, so if we set durations accordingly, line to go for 1s and area to go for 2s, we approximately get that line will finish animation and area will state animation, because area checkpoint at 50% should be reached approximately after 1s */}
-      <style>
-        {`@keyFrames drawLine{
+      {/* <style>
+        {`
+        .chartWrapper {
+        will-change: transform; 
+        }
+        @keyFrames drawLine{
             0% {
             stroke-dashoffset: 1000;
           }
@@ -110,13 +122,21 @@ const WeatherLineChart = ({ data }) => {
         .recharts-layer.recharts-line-dots {
             animation: fadeInDots 2s ease-in-out forwards;
         }
+
+        
         
         `}
-      </style>
-      <ResponsiveContainer>
+      </style> */}
+      <ResponsiveContainer width="100%" height="100%">
         <ComposedChart
           data={lineChartData}
           margin={{ top: 35, right: 35, left: 35, bottom: 40 }}
+          style={{
+            transform: 'scale(2)',
+            transformOrigin: 'center',
+            textRendering: 'geometricPrecision',
+            WebkitFontSmoothing: 'antialiased',
+          }}
         >
           <defs>
             <linearGradient id="chartLineGradient" x1="0" y1="0" x2="0" y2="1">

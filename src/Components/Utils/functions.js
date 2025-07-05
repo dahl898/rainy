@@ -42,7 +42,7 @@ function calculateAngles(containerRef, cardRefs) {
     const offset = cardCenter - containerCenter
 
     //This should ensure that angle doesn't spill outside [-15, 15] range
-    const angle = Math.min(30, Math.max(-30, (offset / maxOffset) * -30))
+    const angle = Math.min(25, Math.max(-25, (offset / maxOffset) * -25))
 
     return angle
   })
@@ -50,28 +50,113 @@ function calculateAngles(containerRef, cardRefs) {
 }
 
 function getCardToScrollTo(cardRefs, containerRef) {
-  const containerDimensions = containerRef.getBoundingClientRect()
-  const [topLastVisibleCard, bottomLastVisibleCard] = cardRefs.map((card) => {
-    // return first and last partly visible cards if there are any. Destructuring is based on the fact that top partly visible card will always go first because cardRefs should go in the same order as on screen.
-    const cardDimensions = card.getBoundingClientRect()
-    if (
-      cardDimensions.top < containerDimensions.top &&
-      cardDimensions.bottom > cardDimensions.top
-    )
-      return { ref: card, dimensions: cardDimensions }
-    if (
-      cardDimensions.top < containerDimensions.bottom &&
-      cardDimensions.bottom > cardDimensions.bottom
-    )
-      return { ref: card, dimensions: cardDimensions }
-  })
+  const containerCenter = getCenter(containerRef.current)
 
-  const topCardOffset = containerDimensions.top - topLastVisibleCard.top
-  const bottomCardOffset =
-    bottomLastVisibleCard.bottom - containerDimensions.top
+  const reducedCard = cardRefs.reduce((acc, currentCard, idx) => {
+    const cardCenter = getCenter(currentCard.current)
+    const currentCardOffsetFromCenter = Math.abs(containerCenter - cardCenter)
+    if (idx === 0) {
+      acc.card = currentCard.current
+      acc.offsetFromCenter = currentCardOffsetFromCenter
+      return acc
+    } else {
+      if (acc.offsetFromCenter > currentCardOffsetFromCenter) {
+        acc.card = currentCard.current
+        acc.offsetFromCenter = currentCardOffsetFromCenter
+        return acc
+      } else {
+        return acc
+      }
+    }
+  }, {})
+  const cardClosestToCenter = reducedCard.card
 
-  if (topCardOffset > bottomCardOffset) return bottomLastVisibleCard.ref // bigger offset equals bigger chunk of card is outside of the visible area. We need to scroll to the partly visible card that has smaller chunk outside the visible area, i.e. bigger visible chunk
-  if (topCardOffset < bottomCardOffset) return topLastVisibleCard.ref
+  return cardClosestToCenter
 }
 
-export { generatePoints, normalizeData, denormalizeValue, calculateAngles }
+function getCenter(elementReference) {
+  const elementReferenceDimensions = elementReference.getBoundingClientRect()
+  const elementCenterPosition =
+    elementReferenceDimensions.top +
+    (elementReferenceDimensions.bottom - elementReferenceDimensions.top) / 2
+
+  return elementCenterPosition
+}
+
+function rotateCards(containerRef, cardRefs, ticking) {
+  const container = containerRef.current
+  if (!ticking.current) {
+    requestAnimationFrame(() => {
+      if (refsAreReady(container, cardRefs)) {
+        const angleList = calculateAngles(containerRef, cardRefs)
+
+        cardRefs.forEach((ref, i) => {
+          const card = ref.current
+          const angle = angleList[i]
+          if (Math.sign(angle) === -1) {
+            card.style.transformOrigin = 'bottom center'
+          } else {
+            card.style.transformOrigin = 'top center'
+          }
+          let transform = `rotateX(${angle}deg)`
+          if (angle >= -9 && angle <= 9) {
+            transform += ' translateZ(40px)'
+          }
+          card.style.transform = transform
+        })
+      }
+
+      ticking.current = false
+    })
+
+    ticking.current = true
+  }
+}
+
+function scrollSnapping(
+  containerRef,
+  cardRefs,
+  isProgrammaticScroll,
+  programmaticScrollTimeout,
+  scrollTimeout
+) {
+  const container = containerRef.current
+
+  if (isProgrammaticScroll.current) {
+    clearTimeout(programmaticScrollTimeout.current)
+    programmaticScrollTimeout.current = setTimeout(() => {
+      isProgrammaticScroll.current = false
+    }, 200)
+  } else {
+    clearTimeout(scrollTimeout.current)
+    scrollTimeout.current = setTimeout(() => {
+      isProgrammaticScroll.current = true
+
+      if (refsAreReady(container, cardRefs)) {
+        const cardToScrollTo = getCardToScrollTo(cardRefs, containerRef)
+        if (cardToScrollTo) {
+          const cardCenter = getCenter(cardToScrollTo)
+          const containerCenter = getCenter(container)
+          const offset = cardCenter - containerCenter
+          const scrollPosition = container.scrollTop
+          const scrollOffset = scrollPosition + offset
+          container.scrollTo({ top: scrollOffset, behavior: 'smooth' })
+        }
+      }
+    }, 50)
+  }
+}
+
+function refsAreReady(container, cardRefs) {
+  return container && cardRefs.every((ref) => ref.current)
+}
+export {
+  generatePoints,
+  normalizeData,
+  denormalizeValue,
+  calculateAngles,
+  getCardToScrollTo,
+  getCenter,
+  rotateCards,
+  scrollSnapping,
+}

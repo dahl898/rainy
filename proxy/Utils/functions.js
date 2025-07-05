@@ -20,11 +20,11 @@ function createForecastDateTimeList(weatherTimestemps) {
 
 function filterApiData(dataArray, timestamps) {
   const flattenedTimestampsArray = timestamps.flat()
-  console.log(flattenedTimestampsArray)
+
   const filteredArray = dataArray.filter((val) =>
     flattenedTimestampsArray.includes(val.startTime)
   )
-  console.log(filteredArray)
+
   return filteredArray
 }
 
@@ -38,14 +38,10 @@ function prepareDailyData(dailyDataArray, timestamps) {
     },
     []
   )
-  console.log('Reduced array: ' + reducedTimestampsToDates)
   const filteredDailyDataArray = dailyDataArray.filter((val) => {
     return reducedTimestampsToDates.includes(val.startTime.split('T')[0])
   })
-  console.log(
-    'Filtered daily array: ',
-    JSON.stringify(filteredDailyDataArray, null, 2)
-  )
+
   return filteredDailyDataArray
 }
 
@@ -73,7 +69,6 @@ function composeFinalArrayForFrontend(
       daily: dailyData,
     }
   })
-  console.log(JSON.stringify(composedArray))
   return composedArray
 }
 

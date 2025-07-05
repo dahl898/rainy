@@ -1,11 +1,11 @@
 .scroll_wrapper {
   height: 100%;
-  position: relative;
+  /* position: relative; */
 }
 
-.scroll_container {
+/* .scroll_container {
   height: 100%;
-  min-height: 0; /* crucial for overflow scrolling inside a flex child */
+  min-height: 0; 
   overflow: auto;
   display: flex;
   flex-direction: column;
@@ -15,6 +15,7 @@
   perspective: 2000px;
   transform-style: preserve-3d;
   perspective-origin: center;
+  will-change: transform;
 }
 
 .shadow_top,
@@ -35,4 +36,26 @@
 .shadow_bottom {
   bottom: 0;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 90%);
+} */
+
+.scroll_container {
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: none;
+  padding: 30px;
+
+  perspective: 2000px;
+  transform-style: preserve-3d;
+  perspective-origin: center;
+}
+
+.chartContainer {
+  color: white;
+}
+.chartWrapper {
+  background-color: #343434;
+  /* will-change: transform; */
 }
