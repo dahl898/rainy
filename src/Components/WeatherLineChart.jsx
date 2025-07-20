@@ -62,7 +62,7 @@ const WeatherLineChart = ({ data }) => {
         width: '100%',
         height: '100%',
         transform: 'scale(0.5)',
-        willChange: 'transform',
+        // willChange: 'transform',
       }}
     >
       {/* keyframes have checkpoints at 0% and 50% with the same parameters only to control the order of animations. The point is 

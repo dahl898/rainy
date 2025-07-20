@@ -137,6 +137,7 @@ function scrollSnapping(
         if (cardToScrollTo) {
           const cardCenter = getCenter(cardToScrollTo)
           const containerCenter = getCenter(container)
+          console.log('Container center ' + containerCenter)
           const offset = cardCenter - containerCenter
           const scrollPosition = container.scrollTop
           const scrollOffset = scrollPosition + offset

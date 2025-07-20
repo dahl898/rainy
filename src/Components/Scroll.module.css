@@ -40,8 +40,10 @@
 
 .scroll_container {
   height: 100%;
-  min-height: 0;
-  overflow: auto;
+  /* min-height: 0; */
+  /* overflow: auto; */
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
   display: flex;
   flex-direction: column;
   scrollbar-width: none;
@@ -50,6 +52,7 @@
   perspective: 2000px;
   transform-style: preserve-3d;
   perspective-origin: center;
+  scroll-snap-type: y proximity;
 }
 
 .chartContainer {
@@ -58,4 +61,8 @@
 .chartWrapper {
   background-color: #343434;
   /* will-change: transform; */
+}
+
+.scroll_margin {
+  min-height: 180px;
 }

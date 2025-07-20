@@ -3,14 +3,10 @@ import TemperatureCard from './TemperatureCard'
 import PrecipitationLevelCard from './PrecipitationLevelCard'
 import style from './Scroll.module.css'
 import './stylesForRasterizationTest.css'
-import {
-  rotateCards,
-  scrollSnapping,
-  getCardToScrollTo,
-  getCenter,
-} from './Utils/functions.js'
+import { rotateCards, scrollSnapping, getCenter } from './Utils/functions.js'
 import { useEffect, useRef, useState } from 'react'
 import Chart from './RasterizingTest.jsx'
+import Card from './Card.jsx'
 
 export default function Scroll({ forecastObject }) {
   const [width, setWidth] = useState('350px')
@@ -25,15 +21,14 @@ export default function Scroll({ forecastObject }) {
     const container = containerRef.current
     function handleScroll() {
       rotateCards(containerRef, cardRefs, ticking)
-      scrollSnapping(
-        containerRef,
-        cardRefs,
-        isProgrammaticScroll,
-        programmaticScrollTimeout,
-        scrollTimeout
-      )
+      // scrollSnapping(
+      //   containerRef,
+      //   cardRefs,
+      //   isProgrammaticScroll,
+      //   programmaticScrollTimeout,
+      //   scrollTimeout
+      // )
     }
-
     handleScroll() // initial call
     container?.addEventListener('scroll', handleScroll)
 
@@ -41,21 +36,10 @@ export default function Scroll({ forecastObject }) {
   }, [])
 
   return (
-    // <div className="container" ref={containerRef}>
-    //   {cardRefs.map((_, idx) => {
-    //     return (
-    //       <div key={idx} className="chartContainer" ref={cardRefs[idx]}>
-    //         <Chart />
-    //       </div>
-    //     )
-    //   })}
-    // </div>
     <div className={style.scroll_wrapper}>
-      {/* <div className={style.shadow_top}></div>
-      <div className={style.shadow_bottom}></div> */}
       <div ref={containerRef} className={style.scroll_container}>
         <div ref={cardRefs[0]}>
-          <PrecipitationCard temperature={23} width={width} height={height} />
+          {/* <PrecipitationCard temperature={23} width={width} height={height} /> */}
         </div>
         <div ref={cardRefs[1]}>
           <TemperatureCard
@@ -65,7 +49,7 @@ export default function Scroll({ forecastObject }) {
           />
         </div>
         <div ref={cardRefs[2]}>
-          <PrecipitationCard temperature={23} width={width} height={height} />
+          {/* <PrecipitationCard temperature={23} width={width} height={height} /> */}
         </div>
         <div ref={cardRefs[3]}>
           <TemperatureCard
@@ -109,7 +93,7 @@ export default function Scroll({ forecastObject }) {
 
         {forecastObject.daily.values.precipitationIntensity !== 0 && (
           <div>
-            <PrecipitationLevelCard width={width} height={height} />
+            {/* <PrecipitationLevelCard width={width} height={height} /> */}
           </div>
         )}
       </div>

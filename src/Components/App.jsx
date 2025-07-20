@@ -37,6 +37,7 @@ function App() {
   if (status === 'success' && weatherData)
     return (
       <div className={style.main_container}>
+        <div className={style.horizontalLine}></div>
         <div className={style.weather_cards_container}>
           {weatherData.map((forecastObject, idx) => {
             return <Scroll key={idx} forecastObject={forecastObject} />

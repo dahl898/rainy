@@ -10,9 +10,7 @@ export default function TemperatureCard({ forecastObject, width, height }) {
     <div className={style.wrapper}>
       <div className={style.card} style={{ width: width, height: height }}>
         <p className={style.type}>Temperature</p>
-        <div className={style.chart}>
-          <WeatherLineChart data={chartCoordinates} />
-        </div>
+        <WeatherLineChart data={chartCoordinates} />
       </div>
     </div>
   )
