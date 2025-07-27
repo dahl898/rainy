@@ -7,6 +7,7 @@ import { rotateCards, scrollSnapping, getCenter } from './Utils/functions.js'
 import { useEffect, useRef, useState } from 'react'
 import Chart from './RasterizingTest.jsx'
 import Card from './Card.jsx'
+import WeatherLineChart from './WeatherLineChart.jsx'
 
 export default function Scroll({ forecastObject }) {
   const [width, setWidth] = useState('350px')
@@ -42,14 +43,26 @@ export default function Scroll({ forecastObject }) {
           {/* <PrecipitationCard temperature={23} width={width} height={height} /> */}
         </div>
         <div ref={cardRefs[1]}>
-          <TemperatureCard
-            forecastObject={forecastObject}
-            width={width}
-            height={height}
-          />
+          <Card type="temperature" width={width} height={height}>
+            <WeatherLineChart forecastObject={forecastObject} />
+          </Card>
         </div>
         <div ref={cardRefs[2]}>
-          {/* <PrecipitationCard temperature={23} width={width} height={height} /> */}
+          <Card type="precipitation" width={width} height={height}>
+            <PrecipitationCard />
+          </Card>
+        </div>
+
+        <div ref={cardRefs[3]}>
+          {forecastObject.daily.values.precipitationProbability !== 0 && (
+            <Card type="precipitation level" width={width} height={height}>
+              <WeatherLineChart forecastObject={forecastObject} />
+            </Card>
+          )}
+        </div>
+
+        {/* <div ref={cardRefs[2]}>
+  
         </div>
         <div ref={cardRefs[3]}>
           <TemperatureCard
@@ -89,7 +102,7 @@ export default function Scroll({ forecastObject }) {
             width={width}
             height={height}
           />
-        </div>
+        </div> */}
 
         {forecastObject.daily.values.precipitationIntensity !== 0 && (
           <div>

@@ -2,14 +2,14 @@
 @import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-straight/css/uicons-thin-straight.css');
 .card {
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
   padding: 1rem;
-  /* width: 350px; */
+  width: 100%;
+  height: 100%;
   border-radius: 20px;
   font-size: 0.5rem;
-  position: relative;
-  background-color: aquamarine;
-  /* background: linear-gradient(to left top, #11004c, #0a2647 60%); */
-  /* margin: 3rem; */
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   /* margin-bottom: 0.75rem; */
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);

@@ -2,7 +2,9 @@ import { Area, ResponsiveContainer, XAxis, Line, ComposedChart } from 'recharts'
 import { denormalizeValue, normalizeData } from './Utils/functions'
 import SunIconSVG from '../SVG/SunIconSVG'
 
-const WeatherLineChart = ({ data }) => {
+const WeatherLineChart = ({ forecastObject }) => {
+  console.log(forecastObject)
+  const data = forecastObject.hourly.map((val) => val.values.temperature)
   const xAxis = ['morning', 'day', 'evening', 'night']
   const dataNormalized = normalizeData(data)
   const lineChartData = dataNormalized.map((param, idx) => {
@@ -130,7 +132,7 @@ const WeatherLineChart = ({ data }) => {
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart
           data={lineChartData}
-          margin={{ top: 35, right: 35, left: 35, bottom: 40 }}
+          margin={{ top: 75, right: 35, left: 35, bottom: 40 }}
           style={{
             transform: 'scale(2)',
             transformOrigin: 'center',

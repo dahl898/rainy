@@ -40,6 +40,7 @@ function App() {
         <div className={style.horizontalLine}></div>
         <div className={style.weather_cards_container}>
           {weatherData.map((forecastObject, idx) => {
+            console.log(forecastObject)
             return <Scroll key={idx} forecastObject={forecastObject} />
           })}
         </div>
