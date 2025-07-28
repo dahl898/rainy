@@ -86,10 +86,11 @@ function getCenter(elementReference) {
 function rotateCards(containerRef, cardRefs, ticking) {
   const container = containerRef.current
   if (!ticking.current) {
+    console.log("I'm trying to rotate cards")
+
     requestAnimationFrame(() => {
       if (refsAreReady(container, cardRefs)) {
         const angleList = calculateAngles(containerRef, cardRefs)
-
         cardRefs.forEach((ref, i) => {
           const card = ref.current
           const angle = angleList[i]

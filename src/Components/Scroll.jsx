@@ -17,7 +17,11 @@ export default function Scroll({ forecastObject }) {
   const scrollTimeout = useRef(null)
   const ticking = useRef(false)
   const containerRef = useRef(null)
-  const cardRefs = Array.from({ length: 8 }, () => useRef(null))
+  const cardComponents = [TemperatureCard, PrecipitationCard]
+  const cardRefs = Array.from({ length: cardComponents.length }, () =>
+    useRef(null)
+  )
+
   useEffect(() => {
     const container = containerRef.current
     function handleScroll() {
@@ -39,13 +43,25 @@ export default function Scroll({ forecastObject }) {
   return (
     <div className={style.scroll_wrapper}>
       <div ref={containerRef} className={style.scroll_container}>
-        <div ref={cardRefs[0]}>
-          {/* <PrecipitationCard temperature={23} width={width} height={height} /> */}
-        </div>
-        <div ref={cardRefs[1]}>
-          <Card type="temperature" width={width} height={height}>
-            <WeatherLineChart forecastObject={forecastObject} />
-          </Card>
+        {cardComponents.map((Component, idx) => {
+          return (
+            <Component
+              ref={(el) => {
+                cardRefs[idx] = el
+              }}
+              forecastObject={forecastObject}
+              width={width}
+              height={height}
+            />
+          )
+        })}
+
+        {/* <div ref={cardRefs[1]}>
+          <TemperatureCard
+            forecastObject={forecastObject}
+            width={width}
+            height={height}
+          />
         </div>
         <div ref={cardRefs[2]}>
           <Card type="precipitation" width={width} height={height}>
@@ -59,7 +75,7 @@ export default function Scroll({ forecastObject }) {
               <WeatherLineChart forecastObject={forecastObject} />
             </Card>
           )}
-        </div>
+        </div> */}
 
         {/* <div ref={cardRefs[2]}>
   

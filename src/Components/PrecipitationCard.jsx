@@ -5,10 +5,15 @@ import PrecipitationSVG from '../SVG/PrecipitationSVG'
 import DewPointSVG from '../SVG/DewPointSVG'
 import FeelsSVG from '../SVG/FeelsSVG'
 
-export default function PrecipitationCard() {
+export default function PrecipitationCard({
+  forecastObject,
+  width,
+  height,
+  ref,
+}) {
   return (
-    <>
-      <div className={style.card}>
+    <div ref={ref}>
+      <div className={style.card} style={{ width: width, height: height }}>
         <div className={style.precipitation_container}>
           <div className={style.precipitation_headline_container}>
             <div className={style.precipitation_icon_container}>
@@ -44,6 +49,6 @@ export default function PrecipitationCard() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
