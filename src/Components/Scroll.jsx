@@ -17,7 +17,11 @@ export default function Scroll({ forecastObject }) {
   const scrollTimeout = useRef(null)
   const ticking = useRef(false)
   const containerRef = useRef(null)
-  const cardComponents = [TemperatureCard, PrecipitationCard]
+  const cardComponents = [
+    TemperatureCard,
+    PrecipitationCard,
+    PrecipitationLevelCard,
+  ]
   const cardRefs = Array.from({ length: cardComponents.length }, () =>
     useRef(null)
   )
@@ -25,6 +29,7 @@ export default function Scroll({ forecastObject }) {
   useEffect(() => {
     const container = containerRef.current
     function handleScroll() {
+      console.log(cardRefs[1])
       rotateCards(containerRef, cardRefs, ticking)
       // scrollSnapping(
       //   containerRef,
@@ -47,7 +52,7 @@ export default function Scroll({ forecastObject }) {
           return (
             <Component
               ref={(el) => {
-                cardRefs[idx] = el
+                cardRefs[idx].current = el
               }}
               forecastObject={forecastObject}
               width={width}

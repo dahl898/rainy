@@ -2,16 +2,21 @@ import style from './PrecipitationLevelCard.module.css'
 
 import WeatherLineChart from './WeatherLineChart'
 
-export default function PrecipitationLevelCard({ width, height }) {
-  const apiData = [2, 4, 4, 2]
+export default function PrecipitationLevelCard({
+  forecastObject,
+  width,
+  height,
+  ref,
+}) {
+  const chartCoordinates = forecastObject.hourly.map(
+    (val) => val.values.rainIntensity
+  )
   return (
-    <>
+    <div ref={ref} className={style.wrapper}>
       <div className={style.card} style={{ width: width, height: height }}>
         <p className={style.type}>Precipitation level</p>
-        <div className={style.chart}>
-          <WeatherLineChart data={apiData} />
-        </div>
+        <WeatherLineChart data={chartCoordinates} />
       </div>
-    </>
+    </div>
   )
 }
