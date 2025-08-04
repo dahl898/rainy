@@ -150,6 +150,21 @@ function scrollSnapping(
 function refsAreReady(container, cardRefs) {
   return container && cardRefs.every((ref) => ref.current)
 }
+
+const loadIcons = () => {
+  const modules = import.meta.glob('/src/assets/SVGs/*.svg', {
+    query: '?react',
+    eager: true,
+    import: 'default',
+  })
+
+  return Object.fromEntries(
+    Object.entries(modules).map(([iconPath, component]) => {
+      const name = iconPath.split('/').pop().replace('.svg', '')
+      return [name, component]
+    })
+  )
+}
 export {
   generatePoints,
   normalizeData,
@@ -159,4 +174,5 @@ export {
   getCenter,
   rotateCards,
   scrollSnapping,
+  loadIcons,
 }

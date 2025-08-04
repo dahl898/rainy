@@ -2,7 +2,7 @@ import { Area, ResponsiveContainer, XAxis, Line, ComposedChart } from 'recharts'
 import { denormalizeValue, normalizeData } from './Utils/functions'
 import SunIconSVG from '../SVG/SunIconSVG'
 
-const WeatherLineChart = ({ data }) => {
+const WeatherLineChart = ({ data, chartIcons }) => {
   const xAxis = ['morning', 'day', 'evening', 'night']
   const dataNormalized = normalizeData(data)
   const lineChartData = dataNormalized.map((param, idx) => {
@@ -19,21 +19,27 @@ const WeatherLineChart = ({ data }) => {
       </text>
     )
   }
-  function Icon({ x, y, iconSize, iconOffset }) {
+  function Icon({ x, y, iconSize, iconOffset, index }) {
     const iconHalfWidth = iconSize.width / 2
     const { width, height } = iconSize
-
+    console.log('x  :', x)
+    console.log('y  :', y)
+    console.log('iconOffset   :', iconOffset)
+    console.log('chartIcons[index]', chartIcons?.[index])
+    const Component = chartIcons[index]
     return (
       <g transform={`translate(${x - iconHalfWidth}, ${y - iconOffset})`}>
-        <SunIconSVG width={width} height={height} />
+        <Component width={width} height={height} />
+        {/* <SunIconSVG width={width} height={height} /> */}
       </g>
     )
   }
 
-  function renderCustomAreaLabel({ payload, x, y, width, height, value }) {
+  function renderCustomAreaLabel({ index, x, y, value }) {
     const iconSize = { width: 20, height: 20 }
     const iconOffset = 30
     const textOffset = 25
+    console.log('y: ', y)
 
     const valueDenormalized = denormalizeValue(value, data)
     return (
@@ -48,7 +54,13 @@ const WeatherLineChart = ({ data }) => {
           {valueDenormalized}
         </text>
 
-        <Icon x={x} y={y} iconSize={iconSize} iconOffset={iconOffset} />
+        <Icon
+          x={x}
+          y={y}
+          iconSize={iconSize}
+          iconOffset={iconOffset}
+          index={index}
+        />
       </g>
     )
   }
